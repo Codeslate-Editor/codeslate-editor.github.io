@@ -1,0 +1,13 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.editor {
+    width: 100vw;
+    height: 100vh;
+}
+
+.CodeMirror {
+    height: 100%;
+}

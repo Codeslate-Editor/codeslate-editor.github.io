@@ -4,7 +4,7 @@
     user-select: none;
 }
 
-h1, code, .mono, .editor * {
+h1, code, .mono, .editor *, .CodeMirror-linenumber {
     font-family: "Overpass Mono", "Roboto Mono", sans-serif;
 }
 

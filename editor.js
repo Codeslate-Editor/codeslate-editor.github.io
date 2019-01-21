@@ -9,11 +9,19 @@ function newEditor() {
         element: $(".editors").children().last(),
         cm: CodeMirror($(".editors").children().last()[0], {
             value: `console.log("Hello, world!");`,
-            mode: "javascript"
+            mode: "javascript",
+            lineNumbers: true,
+            matchBrackets: true,
+            fixedGutter: true,
+            tabsize: 4,
+            indentUnit: 4,
+            autoCloseBrackets: true
         })
     });
 }
 
 $(function() {
     newEditor();
+
+    updateSyntaxHighlighting();
 });
