@@ -21,9 +21,12 @@ var syntaxHighlighting = {
     "link": "#448dff",
     "error": "#e2271e",
     "invalidchar": "#e2271e",
-    "@bg": "#072047",
-    "@fg": "white",
-    "@caret": "white"
+    "@main-bg": "#072047",
+    "@main-fg": "white",
+    "@lines-bg": "#0b2f68",
+    "@lines-fg": "#98b4e0",
+    "@caret": "white",
+    "@highlight": "#0d3d87"
 };
 
 function updateSyntaxHighlighting() {
@@ -33,10 +36,18 @@ function updateSyntaxHighlighting() {
         var currentSelector = Object.keys(syntaxHighlighting)[i];
         var currentColour = syntaxHighlighting[Object.keys(syntaxHighlighting)[i]];
 
-        if (currentSelector == "@bg") {
+        if (currentSelector == "@main-bg") {
             $(".CodeMirror").css("background-color", currentColour);
-        } else if (currentSelector == "@fg") {
+        } else if (currentSelector == "@main-fg") {
             $(".CodeMirror").css("color", currentColour);
+        } else if (currentSelector == "@lines-bg") {
+            $(".CodeMirror-gutter").css("background-color", currentColour);
+        } else if (currentSelector == "@lines-fg") {
+            $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
+                .CodeMirror-linenumber {
+                    color: ` + currentColour + `
+                }
+            `);
         } else if (currentSelector == "@caret") {
             if (currentColour[0] == "@") {
                 $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
@@ -48,6 +59,20 @@ function updateSyntaxHighlighting() {
                 $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
                     .CodeMirror-cursor {
                         border-left: 1px solid ` + currentColour + `
+                    }
+                `);
+            }
+        } else if (currentSelector == "@highlight") {
+            if (currentColour[0] == "@") {
+                $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
+                    .CodeMirror-selected {
+                        ` + currentColour.substring(1) + `
+                    }
+                `);
+            } else {
+                $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
+                    .CodeMirror-selected {
+                        background-color: ` + currentColour + `!important
                     }
                 `);
             }
