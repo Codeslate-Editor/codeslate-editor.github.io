@@ -15,7 +15,12 @@ function newEditor() {
             fixedGutter: true,
             tabsize: 4,
             indentUnit: 4,
-            autoCloseBrackets: true
+            autoCloseBrackets: true,
+            extraKeys: {
+                "Tab": function(cm) {
+                    cm.replaceSelection("    ", "end");
+                }
+            }
         })
     });
 }
