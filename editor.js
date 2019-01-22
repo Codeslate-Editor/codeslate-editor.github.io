@@ -17,6 +17,7 @@ function newEditor() {
             indentUnit: 4,
             autoCloseBrackets: true,
             autoCloseTags: true,
+            dontIndentOnAutoClose: true,
             extraKeys: {
                 "Tab": function(cm) {
                     cm.replaceSelection("    ", "end");
