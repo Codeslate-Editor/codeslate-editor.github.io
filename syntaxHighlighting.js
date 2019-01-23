@@ -40,11 +40,23 @@ function updateSyntaxHighlighting() {
         var currentColour = syntaxHighlighting[Object.keys(syntaxHighlighting)[i]];
 
         if (currentSelector == "@main-bg") {
-            $(".CodeMirror").css("background-color", currentColour);
+            $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
+                .CodeMirror {
+                    background-color: ` + currentColour + `
+                }
+            `);
         } else if (currentSelector == "@main-fg") {
-            $(".CodeMirror").css("color", currentColour);
+            $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
+                .CodeMirror {
+                    color: ` + currentColour + `
+                }
+            `);
         } else if (currentSelector == "@lines-bg") {
-            $(".CodeMirror-gutter").css("background-color", currentColour);
+            $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
+                .CodeMirror-gutter {
+                    background-color: ` + currentColour + `
+                }
+            `);
         } else if (currentSelector == "@lines-fg") {
             $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
                 .CodeMirror-linenumber {

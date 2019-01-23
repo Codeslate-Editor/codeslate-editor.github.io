@@ -3,11 +3,11 @@
     --foregroundColour: white;
     --uiColour: #0b2f68;
     --uiTextColour: white;
-    --uiHoverColour: #0b2f68;
+    --uiHoverColour: #10397a;
     --uiDeselectedColour: #0b2f68;
     --uiFlatTextColour: white;
-    --uiInputColour: #072047;
-    --uiInputTextColour: black;
+    --uiInputColour: #051a3b;
+    --uiInputTextColour: white;
     --uiCardBorderColour: #0b2f68;
 }
 
@@ -73,6 +73,7 @@ button {
 
 button:hover {
     background-color: var(--uiHoverColour);
+    cursor: pointer;
 }
 
 button:disabled {

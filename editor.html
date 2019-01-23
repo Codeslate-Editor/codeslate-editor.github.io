@@ -12,6 +12,7 @@
         <script src="lib/lang.js"></script>
         <script src="lang/overrides.js"></script>
         <script src="lib/codemirror.js"></script>
+        <script src="lib/cmExts/autorefresh.js"></script>
         <script src="lib/cmExts/closebrackets.js"></script>
         <script src="lib/cmExts/closetag.js"></script>
         <script src="lib/cmExts/show-hint.js"></script>
@@ -29,8 +30,10 @@
     </head>
     <body>
         <div class="sidebar">
-            Coming soon!
+            <button class="newFilenameQueue sidebarItem" onclick="promptNewFile();"><i>note_add</i> New file</button>
+            <div class="files"></div>
+            <input class="newFilename sidebarItem" autocomplete="false" spellcheck="false">
         </div>
-        <div class="editors"></div>
+        <div class="editor"></div>
     </body>
 </html>
