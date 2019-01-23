@@ -3,9 +3,32 @@ html, body {
     margin: 0;
 }
 
-.editor {
-    width: 100vw;
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(150px - 20px);
     height: 100vh;
+    padding: 10px;
+}
+
+.editor {
+    position: absolute;
+    top: 0;
+    left: 150px;
+    width: calc(100vw - 150px);
+    height: 100vh;
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        display: none;
+    }
+
+    .editor {
+        left: 0;
+        width: 100vw;
+    }
 }
 
 /* CodeMirror tweaks */
