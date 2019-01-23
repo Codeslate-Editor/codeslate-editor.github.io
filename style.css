@@ -15,11 +15,14 @@
     font-family: "Overpass", "Roboto", sans-serif;
     outline: none;
     user-select: none;
+}
+
+body {
     background-color: var(--backgroundColour);
     color: var(--foregroundColour);
 }
 
-h1, code, .mono, .editor *, .CodeMirror-linenumber, .CodeMirror-hints {
+h1, code, .mono, .editor *, .CodeMirror-linenumber, .CodeMirror-hint {
     font-family: "Overpass Mono", "Roboto Mono", sans-serif;
 }
 

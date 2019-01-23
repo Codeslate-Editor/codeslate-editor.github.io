@@ -18,10 +18,6 @@ html, body {
     border: none;
 }
 
-.CodeMirror-linenumber {
-    background-color: transparent;
-}
-
 /* CodeMirror-hints tweaks */
 
 .CodeMirror-hints {
