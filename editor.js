@@ -34,7 +34,7 @@ function newEditor() {
     });
 
     editors[editors.length - 1].cm.on("keydown", function(cm, event) {
-        var blockedKeyCodes = [8, 9, 13, 16, 27, 32, 37, 38, 39, 40, 186, 190];
+        var blockedKeyCodes = [8, 9, 13, 16, 17, 27, 32, 37, 38, 39, 40, 186, 190];
         var blockedShiftKeyCodes = [190];
 
         console.log(event.keyCode);

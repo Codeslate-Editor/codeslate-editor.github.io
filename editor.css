@@ -25,9 +25,9 @@ html, body {
     background-color: var(--uiColour);
     color: var(--uiTextColour);
     box-shadow: none;
-  }
+}
   
-  .CodeMirror-hint {
+.CodeMirror-hint {
     margin: 0;
     padding: 0 4px;
     border-radius: 2px;
@@ -35,10 +35,10 @@ html, body {
     background-color: var(--uiColour);
     color: var(--uiTextColour);
     cursor: pointer;
-  }
+}
   
-  li.CodeMirror-hint-active {
-    background: #08f;
+li.CodeMirror-hint-active {
+    background: #4688f2;
     color: white;
-  }
+}
   

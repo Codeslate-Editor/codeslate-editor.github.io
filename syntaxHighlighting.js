@@ -25,8 +25,11 @@ var syntaxHighlighting = {
     "@main-fg": "white",
     "@lines-bg": "#0b2f68",
     "@lines-fg": "#98b4e0",
+    "@autocomplete-bg": "#0b2f68",
+    "@autocomplete-fg": "white",
+    "@autocomplete-highlight": "#4688f2",
     "@caret": "white",
-    "@highlight": "#0d3d87"
+    "@highlight": "#0d3d87",
 };
 
 function updateSyntaxHighlighting() {
@@ -46,6 +49,24 @@ function updateSyntaxHighlighting() {
             $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
                 .CodeMirror-linenumber {
                     color: ` + currentColour + `
+                }
+            `);
+        } else if (currentSelector == "@autocomplete-bg") {
+            $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
+                .CodeMirror-hints, .CodeMirror-hint {
+                    background-color: ` + currentColour + `
+                }
+            `);
+        } else if (currentSelector == "@autocomplete-fg") {
+            $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
+                .CodeMirror-hint {
+                    color: ` + currentColour + `
+                }
+            `);
+        } else if (currentSelector == "@autocomplete-highlight") {
+            $(".syntaxHighlighting").text($(".syntaxHighlighting").text() + `
+                li.CodeMirror-hint-active {
+                    background-color: ` + currentColour + `
                 }
             `);
         } else if (currentSelector == "@caret") {
