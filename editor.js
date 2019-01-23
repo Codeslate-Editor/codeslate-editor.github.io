@@ -25,6 +25,12 @@ function newEditor() {
             }
         })
     });
+
+    editors[editors.length - 1].cm.on("keyup", function(cm, event) {
+        if (!cm.state.completionActive && event.keyCode != 13) {
+            CodeMirror.commands.autocomplete(cm, null, {completeSingle: false});
+        }
+    });
 }
 
 $(function() {

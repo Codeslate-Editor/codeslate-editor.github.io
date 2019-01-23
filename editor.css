@@ -8,6 +8,8 @@ html, body {
     height: 100vh;
 }
 
+/* CodeMirror tweaks */
+
 .CodeMirror {
     height: 100%;
 }
@@ -15,3 +17,32 @@ html, body {
 .CodeMirror-gutters {
     border: none;
 }
+
+.CodeMirror-linenumber {
+    background-color: transparent;
+}
+
+/* CodeMirror-hints tweaks */
+
+.CodeMirror-hints {
+    border: none;
+    background-color: var(--uiColour);
+    color: var(--uiTextColour);
+    box-shadow: none;
+  }
+  
+  .CodeMirror-hint {
+    margin: 0;
+    padding: 0 4px;
+    border-radius: 2px;
+    white-space: pre;
+    background-color: var(--uiColour);
+    color: var(--uiTextColour);
+    cursor: pointer;
+  }
+  
+  li.CodeMirror-hint-active {
+    background: #08f;
+    color: white;
+  }
+  
