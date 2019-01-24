@@ -5,14 +5,30 @@ var cm;
 function newEditor(filename) {
     editors.push({
         filename: filename,
-        content: `<!DOCTYPE html>
+        content: (
+            filename.endsWith(".html") ?
+                `<!DOCTYPE html>
 <html>
     <head>
         <title></title>
     </head>
     <body>
     </body>
-</html>`
+</html>` :
+                (
+                    
+                    filename.endsWith(".css") ?
+                    `body {
+    font-family: "sans-serif";
+}` :
+                        (
+                            
+                            filename.endsWith(".js") ?
+                            `console.log("Hello, world!");` :
+                            ""
+                        )
+                )
+        )
     });
 
     currentEditor = editors.length - 1;
@@ -36,6 +52,19 @@ function selectEditor(editorID) {
     currentEditor = editorID;
 
     cm.setValue(editors[editorID].content);
+    cm.setOption("mode", (
+        editors[editorID].filename.endsWith(".html") ?
+        "htmlmixed" :
+        (
+            editors[editorID].filename.endsWith(".css") ?
+            "css" :
+                (
+                    editors[editorID].filename.endsWith(".js") ?
+                    "javascript" :
+                    "text"
+                )
+        )
+    ));
 
     $(".file").removeClass("selected");
     $(".file[data-editor-id='" + editorID + "']").addClass("selected");
