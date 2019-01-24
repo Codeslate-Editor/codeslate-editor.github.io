@@ -91,17 +91,17 @@ $(function() {
 
     $(".newFilename").keydown(function(event) {
         if (event.keyCode == 13) {
-            if ($(".newFilename").val() != "") {
+            if ($(".newFilename").val().trim() != "") {
                 var exists = false;
 
                 for (var i = 0; i < editors.length; i++) {
-                    if (editors[i]["filename"] == $(".newFilename").val()) {
+                    if (editors[i]["filename"] == $(".newFilename").val().trim()) {
                         exists = true;
                     }
                 }
 
-                if (!exists && /^[0-9a-zA-Z ... ]+$/.test($(".newFilename").val())) {
-                    newEditor($(".newFilename").val());
+                if (!exists && /^[0-9a-zA-Z ... ]+$/.test($(".newFilename").val().trim())) {
+                    newEditor($(".newFilename").val().trim());
 
                     $(".newFilename").val("").hide();
                 }
