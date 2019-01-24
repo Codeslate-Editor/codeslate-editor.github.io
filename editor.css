@@ -11,6 +11,7 @@ html, body {
     width: calc(150px - 10px);
     height: 100vh;
     padding: 5px;
+    overflow-y: auto;
 }
 
 .sidebarItem {
