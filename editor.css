@@ -16,20 +16,11 @@ html, body {
 
 .sidebarItem {
     display: block;
-    width: 140px;
-}
-
-button.sidebarItem {
-    width: 132px;
-}
-
-input.sidebarItem {
-    width: 112px;
+    width: calc(100% - 8px);
 }
 
 .sidebarItem.file {
     padding: 4px;
-    width: 132px;
     background-color: transparent;
     text-align: left;
 }
@@ -42,11 +33,31 @@ input.sidebarItem {
     background-color: var(--uiColour);
 }
 
+.sidebarItem.folder {
+    width: calc(100% - 8px);
+    margin-left: 4px;
+    padding-left: 4px;
+    font-size: 12px;
+    border-left: solid 2px var(--uiHoverColour);
+    border-radius: 5px;
+}
+
+.folderLabel {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
 .newFilename {
     display: none;
     padding: 4px;
-    width: 124px!important;
+    width: calc(100% - 16px)!important;
     margin-top: 0;
+}
+
+.newFilenameHint {
+    display: none;
+    padding: 4px;
+    font-size: 10px;
 }
 
 .editor {

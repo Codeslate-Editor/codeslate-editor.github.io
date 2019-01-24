@@ -33,8 +33,11 @@
     <body>
         <div class="sidebar">
             <button class="newFilenameQueue sidebarItem" onclick="promptNewFile();"><i>note_add</i> <span>@New file</span></button>
-            <div class="files"></div>
+            <div class="files">
+                <div class="folder" data-folder=""></div>
+            </div>
             <input class="newFilename sidebarItem" autocomplete="false" spellcheck="false">
+            <div class="newFilenameHint">@Type in the name of the file you want to create. Make folders by inserting folder names before the filename separated with a '/'.</div>
         </div>
         <div class="editor"></div>
     </body>
