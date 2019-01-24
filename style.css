@@ -124,3 +124,21 @@ input {
 .fillWidth {
     width: fit-content;
 }
+
+.desktop {
+    display: unset;
+}
+
+.mobile {
+    display: none!important;
+}
+
+@media (max-width: 600px) {
+    .desktop {
+        display: none;
+    }
+    
+    .mobile {
+        display: unset!important;
+    }
+}

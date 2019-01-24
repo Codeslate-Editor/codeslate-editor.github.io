@@ -112,6 +112,14 @@ function promptNewFile() {
     $(".newFilenameHint").show();
 }
 
+function openSidebar() {
+    $(".sidebar").show();
+}
+
+function closeSidebar() {
+    $(".sidebar").hide();
+}
+
 $(function() {
     cm = CodeMirror($(".editor")[0], {
         value: "",

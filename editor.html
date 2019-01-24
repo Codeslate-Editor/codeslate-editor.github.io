@@ -31,7 +31,9 @@
         <style class="syntaxHighlighting"></style>
     </head>
     <body>
+        <button class="openMenu mobile" onclick="openSidebar();">Open Menu</button>
         <div class="sidebar">
+            <button class="newFilenameQueue sidebarItem mobile" onclick="closeSidebar();">Close Menu</button>
             <button class="newFilenameQueue sidebarItem" onclick="promptNewFile();"><i>note_add</i> <span>@New file</span></button>
             <div class="files">
                 <div class="folder" data-folder=""></div>
