@@ -1,34 +1,48 @@
 var editors = [];
 var currentEditor = 0;
-var cm;
-
-function newEditor(filename) {
-    editors.push({
-        filename: filename,
-        content: (
-            filename.endsWith(".html") ?
-                `<!DOCTYPE html>
+var fileTypes = [
+    {
+        name: "HTML",
+        ending: ".html",
+        mode: "htmlmixed",
+        default: `<!DOCTYPE html>
 <html>
     <head>
         <title></title>
     </head>
     <body>
     </body>
-</html>` :
-                (
-                    
-                    filename.endsWith(".css") ?
-                    `body {
+</html>`
+    },
+    {
+        name: "CSS",
+        ending: ".css",
+        mode: "css",
+        default: `body {
     font-family: "sans-serif";
-}` :
-                        (
-                            
-                            filename.endsWith(".js") ?
-                            `console.log("Hello, world!");` :
-                            ""
-                        )
-                )
-        )
+}`
+    },
+    {
+        name: "JavaScript",
+        ending: ".js",
+        mode: "javascript",
+        default: `console.log("Hello, world!");`
+    }
+];
+var cm;
+
+function newEditor(filename) {
+    var selectContent = "";
+
+    for (var i = 0; i < fileTypes.length; i++) {
+        if (filename.endsWith(fileTypes[i].ending)) {
+            selectContent = fileTypes[i].default;
+        }
+    }
+
+    editors.push({
+        filename: filename,
+        content: selectContent
     });
 
     currentEditor = editors.length - 1;
@@ -52,19 +66,14 @@ function selectEditor(editorID) {
     currentEditor = editorID;
 
     cm.setValue(editors[editorID].content);
-    cm.setOption("mode", (
-        editors[editorID].filename.endsWith(".html") ?
-        "htmlmixed" :
-        (
-            editors[editorID].filename.endsWith(".css") ?
-            "css" :
-                (
-                    editors[editorID].filename.endsWith(".js") ?
-                    "javascript" :
-                    "text"
-                )
-        )
-    ));
+
+    cm.setOption("mode", "text");
+
+    for (var i = 0; i < fileTypes.length; i++) {
+        if (editors[editorID].filename.endsWith(fileTypes[i].ending)) {
+            cm.setOption("mode", fileTypes[i].mode);
+        }
+    }
 
     $(".file").removeClass("selected");
     $(".file[data-editor-id='" + editorID + "']").addClass("selected");
