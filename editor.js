@@ -1,34 +1,5 @@
 var editors = [];
 var currentEditor = 0;
-var fileTypes = [
-    {
-        name: "HTML",
-        ending: ".html",
-        mode: "htmlmixed",
-        default: `<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-    </body>
-</html>`
-    },
-    {
-        name: "CSS",
-        ending: ".css",
-        mode: "css",
-        default: `body {
-    font-family: "sans-serif";
-}`
-    },
-    {
-        name: "JavaScript",
-        ending: ".js",
-        mode: "javascript",
-        default: `console.log("Hello, world!");`
-    }
-];
 var cm;
 
 function newEditor(filename) {
@@ -67,7 +38,7 @@ function selectEditor(editorID) {
 
     cm.setValue(editors[editorID].content);
 
-    cm.setOption("mode", "text");
+    cm.setOption("mode", null);
 
     for (var i = 0; i < fileTypes.length; i++) {
         if (editors[editorID].filename.endsWith(fileTypes[i].ending)) {
