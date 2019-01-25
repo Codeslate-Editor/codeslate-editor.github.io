@@ -125,4 +125,6 @@ function updateSyntaxHighlighting() {
             }
         }
     }
+
+    cm.refresh();
 }
