@@ -40,7 +40,7 @@ function newEditor(filename) {
                     exists = true;
                 }
             }
-            
+
             if (!exists) {
                 editors.push({
                     filename: fileStructure.slice(0, f).join("/") + "#folder"
@@ -76,7 +76,7 @@ function newEditor(filename) {
         if (editors[i].filename.endsWith("#folder")) {
             var hierachyPosition = $("[data-folder='" + editors[i].filename.replace("#folder", "") + "']");
 
-            var orderedDivs = hierachyPosition.children().sort(function(first, second) {
+            var orderedDivs = hierachyPosition.children().sort(function (first, second) {
                 return String.prototype.localeCompare.call($(first).attr("data-name").toLowerCase(), $(second).attr("data-name").toLowerCase());
             });
 
@@ -113,8 +113,16 @@ function promptNewFile() {
     $(".newFilenameHint").show();
 }
 
-function popOut() {
-    live.page = open("live/web/index.html?page=" + editors[currentEditor].filename);
+function runCode() {
+    var selectedPage = "";
+
+    if (editors[currentEditor].filename.endsWith(".html")) {
+        selectedPage = editors[currentEditor].filename;
+    } else {
+        selectedPage = "index.html";
+    }
+
+    live.page = open("live/web/index.html?page=" + selectedPage);
     live.structure = {};
 
     for (key in editors) {
@@ -130,7 +138,7 @@ function closeSidebar() {
     $(".sidebar").hide();
 }
 
-$(function() {
+$(function () {
     cm = CodeMirror($(".editor")[0], {
         value: "",
         mode: "htmlmixed",
@@ -144,13 +152,13 @@ $(function() {
         autoCloseTags: true,
         dontIndentOnAutoClose: true,
         extraKeys: {
-            "Tab": function(cm) {
+            "Tab": function (cm) {
                 cm.replaceSelection("    ", "end");
             }
         }
     });
 
-    cm.on("keydown", function(cm, event) {
+    cm.on("keydown", function (cm, event) {
         var blockedKeyCodes = [8, 9, 13, 16, 17, 27, 32, 37, 38, 39, 40, 186, 190];
         var blockedShiftKeyCodes = [190];
 
@@ -162,11 +170,11 @@ $(function() {
                 !(blockedShiftKeyCodes.indexOf(event.keyCode) > -1)
             )
         ) {
-            CodeMirror.commands.autocomplete(cm, null, {completeSingle: false});
+            CodeMirror.commands.autocomplete(cm, null, { completeSingle: false });
         }
     });
 
-    cm.on("keyup", function(cm, event) {
+    cm.on("keyup", function (cm, event) {
         editors[currentEditor].content = cm.getValue();
     });
 
@@ -175,7 +183,7 @@ $(function() {
     newEditor("#init");
     newEditor("index.html");
 
-    $(".newFilename").keydown(function(event) {
+    $(".newFilename").keydown(function (event) {
         if (event.keyCode == 13) {
             if ($(".newFilename").val().trim() != "") {
                 var exists = false;
@@ -201,16 +209,24 @@ $(function() {
         }
     });
 
-    $(document).on("click", "*", function(event) {
+    $(document).on("click", "*", function (event) {
         $(".newFilename").val("").hide();
         $(".newFilenameHint").hide();
     });
 
-    $(".newFilenameQueue, .newFilename").click(function(event) {
+    $(".newFilenameQueue, .newFilename").click(function (event) {
         event.stopPropagation();
     });
 
-    addEventListener("message", function(event) {
+    $(document).on("keydown", "*", function (event) {
+        if (event.keyCode == 116) {
+            runCode();
+
+            event.preventDefault();
+        }
+    });
+
+    addEventListener("message", function (event) {
         if (event.data.for == "CodeslateLive") {
             if (event.data.getData) {
                 live.page.postMessage({
