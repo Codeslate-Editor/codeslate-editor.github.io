@@ -26,12 +26,12 @@ html, body {
 .sidebarItem {
     display: block;
     width: calc(100% - 8px);
+    text-align: left;
 }
 
 .sidebarItem.file {
     padding: 4px;
     background-color: transparent;
-    text-align: left;
 }
 
 .sidebarItem.file:hover {
@@ -49,6 +49,10 @@ html, body {
     font-size: 12px;
     border-left: solid 2px var(--uiHoverColour);
     border-radius: 5px;
+}
+
+.files {
+    margin-top: 10px;
 }
 
 .folderLabel {
@@ -76,6 +80,7 @@ html, body {
     width: calc(100vw - 150px);
     height: 100vh;
     background-color: var(--backgroundColour);
+    cursor: text;
 }
 
 @media (max-width: 600px) {
@@ -98,6 +103,7 @@ html, body {
 
 .CodeMirror-gutters {
     border: none;
+    cursor: default;
 }
 
 /* CodeMirror-hints tweaks */

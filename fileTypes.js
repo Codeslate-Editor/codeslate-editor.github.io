@@ -17,7 +17,7 @@ fileTypes = [
         ending: ".css",
         mode: "css",
         default: `body {
-    font-family: "sans-serif";
+    font-family: sans-serif;
 }`
     },
     {

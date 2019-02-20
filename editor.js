@@ -1,6 +1,7 @@
 var editors = [];
 var currentEditor = 0;
 var cm;
+var live = {};
 
 function newEditor(filename) {
     var selectContent = "";
@@ -112,6 +113,15 @@ function promptNewFile() {
     $(".newFilenameHint").show();
 }
 
+function popOut() {
+    live.page = open("live/web/index.html?page=" + editors[currentEditor].filename);
+    live.structure = {};
+
+    for (key in editors) {
+        live.structure[editors[key].filename] = editors[key].content;
+    }
+}
+
 function openSidebar() {
     $(".sidebar").show();
 }
@@ -198,5 +208,16 @@ $(function() {
 
     $(".newFilenameQueue, .newFilename").click(function(event) {
         event.stopPropagation();
+    });
+
+    addEventListener("message", function(event) {
+        if (event.data.for == "CodeslateLive") {
+            if (event.data.getData) {
+                live.page.postMessage({
+                    for: "CodeslateLive",
+                    structure: live.structure
+                }, "*");
+            }
+        }
     });
 });
