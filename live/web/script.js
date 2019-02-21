@@ -27,6 +27,7 @@
     }
 
     var structure = {};
+    var pageParam = "";
     var error = "";
 
     addEventListener("message", function(event) {
@@ -34,17 +35,29 @@
             if (typeof(event.data.structure) == "object") {
                 structure = event.data.structure;
 
-                if (structure[getURLParameter("page")] == undefined) {
-                    $("body").text("Sorry, couldn't find that page.");
+                pageParam = getURLParameter("page");
 
-                    error = "Error 404: The page at " + getURLParameter("page") + " couldn't be found.";
+                if (pageParam == null) {
+                    pageParam = "index.html";
+                } else if (pageParam.endsWith("/")) {
+                    pageParam = pageParam.substring(0, pageParam.length - 1);
                 }
 
-                var path = getURLParameter("page").split("/");
+                if (!(pageParam.endsWith(".html") || pageParam.endsWith(".htm"))) {
+                    pageParam = pageParam + "/index.html";
+                }
+
+                if (structure[pageParam] == undefined) {
+                    $("body").text("Sorry, couldn't find that page.");
+
+                    error = "Error 404: The page at " + pageParam + " couldn't be found.";
+                }
+
+                var path = pageParam.split("/");
                 path.pop();
                 path = path.join("/");
 
-                $("body").html(structure[getURLParameter("page")]);
+                $("body").html(structure[pageParam]);
 
                 $("body").find("title").each(function() {
                     if ($(this).text().trim() != "") {
